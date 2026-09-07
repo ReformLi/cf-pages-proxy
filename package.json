@@ -4,7 +4,7 @@
   "description": "部署到 Cloudflare Pages 的反向代理服务",
   "type": "module",
   "scripts": {
-    "dev": "wrangler pages dev",
+    "dev": "wrangler pages dev .",
     "deploy": "wrangler pages deploy . --project-name cf-pages-proxy"
   },
   "devDependencies": {

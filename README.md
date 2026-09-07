@@ -103,11 +103,12 @@ if (AUTH_TOKEN 存在且非空) {
 
 ```javascript
 // functions/_middleware.js
-const TARGET_DOMAIN = process.env.TARGET_DOMAIN;
-const AUTH_TOKEN = process.env.AUTH_TOKEN;
+// 环境变量在 Pages Functions 运行时（workerd）中通过 context.env 访问
 
 export const onRequest = async (context) => {
-    const { request } = context;
+    const { request, env } = context;
+    const TARGET_DOMAIN = env.TARGET_DOMAIN;
+    const AUTH_TOKEN = env.AUTH_TOKEN;
 
     // 1. 可选认证：仅当 AUTH_TOKEN 设置时才启用
     if (AUTH_TOKEN && AUTH_TOKEN.length > 0) {
@@ -185,6 +186,6 @@ export const onRequest = async (context) => {
 |:--------------- |:----- |:------ |:-------------------------------- |
 | `TARGET_DOMAIN` | **是** | 无      | 目标服务器域名（**不带** `https://`）       |
 | `AUTH_TOKEN`    | 否     | 空（不启用） | 认证 Token，设置后启用请求头 `X-API-Key` 校验 |
-| `PATH_PREFIX`   | 否     | 空      | 需要剥离的路径前缀（暂未实现）                  |
+| `PATH_PREFIX`   | 否     | 空      | 需要剥离的路径前缀（可选）              |
 
 ---
