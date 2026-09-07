@@ -1,0 +1,13 @@
+{
+  "name": "cf-pages-proxy",
+  "version": "1.0.0",
+  "description": "部署到 Cloudflare Pages 的反向代理服务",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev",
+    "deploy": "wrangler pages deploy . --project-name cf-pages-proxy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.78.0"
+  }
+}
